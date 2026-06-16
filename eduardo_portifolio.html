@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eduardo Souza — Digital Experience Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --black: #0a0a0a;
+      --off-black: #1a1a1a;
+      --gray-dark: #3a3a3a;
+      --gray-mid: #8a8a8a;
+      --gray-light: #c8c8c8;
+      --off-white: #f7f6f3;
+      --white: #ffffff;
+      --accent: #0a0a0a;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+      line-height: 1.7
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 0 5vw
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: 0.01em
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--gray-dark);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s
+    }
+
+    .nav-links a:hover {
+      color: var(--black)
+    }
+
+    .nav-cta {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border: 1px solid var(--black);
+      padding: 8px 20px;
+      transition: all 0.25s
+    }
+
+    .nav-cta:hover {
+      background: var(--black);
+      color: var(--white)
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 5vw
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    /* HERO */
+    #hero {
+      padding-top: 140px;
+      padding-bottom: 120px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 28px;
+      display: block
+    }
+
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 4.2vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.18;
+      color: var(--black);
+      margin-bottom: 28px
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--gray-dark)
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--gray-dark);
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 48px
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      align-items: center
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+      padding: 14px 32px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--black);
+      transition: all 0.25s;
+      display: inline-block
+    }
+
+    .btn-primary:hover {
+      background: var(--off-black)
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--black);
+      padding: 14px 32px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      transition: all 0.25s;
+      display: inline-block
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--black)
+    }
+
+    .hero-img-wrap {
+      position: relative
+    }
+
+    .hero-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(15%);
+      border-radius: 5px;
+    }
+
+    .hero-img-label {
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+      background: var(--white);
+      padding: 14px 20px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-dark)
+    }
+
+    /* PROOF / QUICK PROJECTS */
+    #proof {
+      background: var(--off-white);
+      padding: 80px 5vw
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 64px
+    }
+
+    .section-tag {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-mid)
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 400;
+      color: var(--black)
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px
+    }
+
+    .project-card {
+      background: var(--white);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative
+    }
+
+    .project-card:hover .project-img {
+      transform: scale(1.03)
+    }
+
+    .project-card:hover .project-hover {
+      opacity: 1
+    }
+
+    .project-img-wrap {
+      overflow: hidden;
+      aspect-ratio: 4/3
+    }
+
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    }
+
+.project-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.85);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+
+  border-radius: 24px;
+}
+
+    .project-hover-text {
+      color: var(--white);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 10px 24px
+    }
+
+    .project-info {
+      padding: 24px 28px 28px
+    }
+
+    .project-num {
+      font-size: 11px;
+      color: var(--gray-mid);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px
+    }
+
+    .project-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 6px
+    }
+
+    .project-vibe {
+      font-size: 13px;
+      color: var(--gray-mid)
+    }
+
+    /* SOBRE */
+    #sobre {
+      background: var(--white)
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start
+    }
+
+    .sobre-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 48px
+    }
+
+    .sobre-text {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--black);
+      margin-bottom: 28px
+    }
+
+    .sobre-sub {
+      font-size: 15px;
+      color: var(--gray-dark);
+      line-height: 1.8
+    }
+
+    .sobre-detail {
+      padding-top: 80px
+    }
+
+    .detail-item {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08)
+    }
+
+    .detail-item:first-child {
+      border-top: 1px solid rgba(0, 0, 0, 0.08)
+    }
+
+    .detail-num {
+      font-size: 11px;
+      color: var(--gray-mid);
+      margin-bottom: 8px;
+      letter-spacing: 0.04em
+    }
+
+    .detail-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 6px
+    }
+
+    .detail-desc {
+      font-size: 14px;
+      color: var(--gray-dark);
+      line-height: 1.6
+    }
+
+    /* PROJETOS */
+    #projetos {
+      background: var(--off-white)
+    }
+
+    .project-full {
+      margin-bottom: 80px;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      overflow: hidden
+    }
+
+    .project-full:nth-child(even) {
+      direction: rtl
+    }
+
+    .project-full:nth-child(even)>* {
+      direction: ltr
+    }
+
+    .project-img-full {
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      width: 100%;
+      display: block
+    }
+
+    .project-content {
+      padding: 60px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center
+    }
+
+    .project-context {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 20px
+    }
+
+    .project-big-name {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 24px
+    }
+
+    .project-problem {
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 10px
+    }
+
+    .project-desc {
+      font-size: 15px;
+      color: var(--gray-dark);
+      line-height: 1.75;
+      margin-bottom: 32px
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 36px
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--gray-dark);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      padding: 5px 12px
+    }
+
+    .project-cta {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+      transition: opacity 0.2s
+    }
+
+    .project-cta:hover {
+      opacity: 0.6
+    }
+
+    /* SERVIÇOS */
+    #servicos {
+      background: var(--black);
+      color: var(--white)
+    }
+
+    #servicos .section-title {
+      color: var(--white)
+    }
+
+    #servicos .section-tag {
+      color: var(--gray-light)
+    }
+
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px
+    }
+
+    .servico-card {
+      background: #141414;
+      padding: 44px 36px;
+      transition: background 0.3s
+    }
+
+    .servico-card:hover {
+      background: #1c1c1c
+    }
+
+    .servico-icon {
+      width: 36px;
+      height: 2px;
+      background: var(--white);
+      margin-bottom: 36px;
+      opacity: 0.3
+    }
+
+    .servico-name {
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 16px
+    }
+
+    .servico-desc {
+      font-size: 14px;
+      color: var(--gray-mid);
+      line-height: 1.7
+    }
+
+    /* DIFERENCIAL */
+    #diferencial {
+      background: var(--off-white)
+    }
+
+    .diferencial-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start
+    }
+
+    .diferencial-left {
+      position: sticky;
+      top: 100px
+    }
+
+    .diferencial-headline {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.4;
+      margin-bottom: 20px
+    }
+
+    .diferencial-sub {
+      font-size: 14px;
+      color: var(--gray-dark);
+      line-height: 1.7
+    }
+
+    .features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px
+    }
+
+    .feature {
+      padding: 36px;
+      background: var(--white)
+    }
+
+    .feature-n {
+      font-size: 11px;
+      color: var(--gray-mid);
+      letter-spacing: 0.08em;
+      margin-bottom: 20px
+    }
+
+    .feature-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 10px
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--gray-dark);
+      line-height: 1.6
+    }
+
+    /* PROCESSO */
+    #processo {
+      background: var(--white)
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 64px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08)
+    }
+
+    .step {
+      padding: 44px 0 44px;
+      border-right: 1px solid rgba(0, 0, 0, 0.08)
+    }
+
+    .step:last-child {
+      border-right: none
+    }
+
+    .step-num {
+      font-size: 11px;
+      color: var(--gray-mid);
+      letter-spacing: 0.1em;
+      margin-bottom: 24px
+    }
+
+    .step-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 14px
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--gray-dark);
+      line-height: 1.65;
+      padding-right: 24px
+    }
+
+    /* CTA FINAL */
+    #cta-final {
+      background: var(--black);
+      text-align: center;
+      padding: 140px 5vw
+    }
+
+    .cta-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 32px
+    }
+
+    .cta-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 24px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .cta-sub {
+      font-size: 16px;
+      color: var(--gray-mid);
+      margin-bottom: 48px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .btn-whatsapp {
+      background: var(--white);
+      color: var(--black);
+      padding: 16px 44px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.25s;
+      font-weight: 500
+    }
+
+    .btn-whatsapp:hover {
+      opacity: 0.88
+    }
+
+    .project-image-link {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 24px;
+      cursor: pointer;
+    }
+
+    .project-img-full {
+      width: 100%;
+      display: block;
+      transition:
+        transform 0.8s cubic-bezier(.16, 1, .3, 1),
+        filter 0.8s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .project-image-overlay {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(0, 0, 0, .18);
+      backdrop-filter: blur(4px);
+
+      opacity: 0;
+
+      transition:
+        opacity .5s ease,
+        backdrop-filter .5s ease;
+    }
+
+    .project-image-overlay span {
+      color: white;
+      font-size: .95rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transform: translateY(10px);
+      transition: transform .4s ease;
+    }
+
+    .project-image-link:hover .project-img-full {
+      transform: scale(1.05);
+      filter: brightness(.75);
+    }
+
+    .project-image-link:hover .project-image-overlay {
+      opacity: 1;
+    }
+
+    .project-image-link:hover .project-image-overlay span {
+      transform: translateY(0);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #050505;
+      padding: 48px 5vw;
+      color: var(--gray-mid)
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--white)
+    }
+
+    .footer-pos {
+      font-size: 12px;
+      color: var(--gray-mid);
+      margin-top: 4px;
+      letter-spacing: 0.04em
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--gray-mid);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s
+    }
+
+    .footer-links a:hover {
+      color: var(--white)
+    }
+
+    .footer-contact {
+      font-size: 12px;
+      color: var(--gray-mid);
+      letter-spacing: 0.04em
+    }
+
+    /* FADE IN */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .project-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-card {
+      cursor: pointer;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+    }
+
+    @media(max-width:900px) {
+
+      .hero-grid,
+      .sobre-grid,
+      .diferencial-grid,
+      .project-full {
+        grid-template-columns: 1fr
+      }
+
+      .project-full:nth-child(even) {
+        direction: ltr
+      }
+
+      .projects-grid,
+      .servicos-grid,
+      .features-list,
+      .process-steps {
+        grid-template-columns: 1fr
+      }
+
+      .hero-h1 {
+        font-size: 2.2rem
+      }
+
+      .project-content {
+        padding: 40px 32px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Eduardo Souza</a>
+      <ul class="nav-links">
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+      </ul>
+      <a href="https://wa.me/5538998510908" class="nav-cta">Falar comigo</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="fade-up">
+          <span class="hero-tag">Digital Experience Designer</span>
+          <h1 class="hero-h1">Eu crio landing pages que fazem negócios <em>parecerem marcas.</em></h1>
+          <p class="hero-sub">Landing pages modernas, rápidas e estratégicas para negócios locais que querem mais
+            clientes e mais presença digital.</p>
+          <div class="hero-ctas">
+            <a href="#projetos" class="btn-primary">Ver projetos</a>
+            <a href="https://wa.me/5538998510908" class="btn-secondary">Falar comigo</a>
+          </div>
+        </div>
+        <div class="hero-img-wrap fade-up" style="transition-delay:0.15s">
+          <img class="hero-img" src="./assets/foto-portfólio.png" alt="Eduardo Souza"
+            onerror="this.style.background='#e8e6e0';this.style.display='block';this.style.minHeight='500px'">
+          <div class="hero-img-label">Available for projects</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF RÁPIDA -->
+  <section id="proof">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div>
+          <p class="section-tag" style="margin-bottom:12px">Trabalhos selecionados</p>
+          <h2 class="section-title">Experiências que vendem.</h2>
+        </div>
+        <a href="#projetos" class="btn-secondary" style="align-self:center">Ver todos</a>
+      </div>
+      <div class="projects-grid fade-up" style="transition-delay:0.1s">
+
+        <div class="project-card">
+          <a href="https://landing-page-purple-acai.vercel.app/" class="project-card">
+            <div class="project-img-wrap">
+              <img class="project-img" src="assets/Purple-Açai.png" alt="Purple Açaí">
+              <div class="project-hover">
+                <span class="project-hover-text">Ver projeto</span>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <p class="project-num">01</p>
+              <h3 class="project-name">Purple Açaí</h3>
+              <p class="project-vibe">Conversão · Pedidos via WhatsApp</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="project-card">
+          <a href="https://l-essence-restaurant-landing-page.vercel.app/" class="project-card">
+            <div class="project-img-wrap">
+              <img class="project-img" src="assets/L'Essence.png" alt="L'Essence">
+              <div class="project-hover">
+                <span class="project-hover-text">Ver projeto</span>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <p class="project-num">02</p>
+              <h3 class="project-name">L'Essence</h3>
+              <p class="project-vibe">Experiência gastronômica premium</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="project-card">
+          <a href="https://essenza-shop-landing-page.vercel.app/" class="project-card">
+            <div class="project-img-wrap">
+              <img class="project-img" src="assets/Essenza-shop.png" alt="Essenza Shop">
+              <div class="project-hover">
+                <span class="project-hover-text">Ver projeto</span>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <p class="project-num">03</p>
+              <h3 class="project-name">Essenza Shop</h3>
+              <p class="project-vibe">Branding editorial · Luxo silencioso</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="fade-up">
+          <p class="sobre-label">Sobre mim</p>
+          <p class="sobre-text">Eu venho do desenvolvimento backend — sistemas, APIs, arquitetura.</p>
+          <p class="sobre-text">Mas hoje meu foco está em uma coisa simples: criar experiências digitais que ajudam
+            negócios a vender mais e parecerem mais profissionais online.</p>
+          <p class="sobre-sub">Não é só sobre código. É sobre posicionamento. É sobre o que o cliente sente quando entra
+            no seu site.</p>
+        </div>
+        <div class="sobre-detail fade-up" style="transition-delay:0.1s">
+          <div class="detail-item">
+            <p class="detail-num">— Restaurantes & Bares</p>
+            <p class="detail-title">Cardápios que convertem reservas</p>
+            <p class="detail-desc">Sites que passam a experiência antes mesmo do cliente entrar pelo door.</p>
+          </div>
+          <div class="detail-item">
+            <p class="detail-num">— Lojas & Boutiques</p>
+            <p class="detail-title">Presença digital que eleva a marca</p>
+            <p class="detail-desc">Vitrine digital com a mesma curadoria do espaço físico.</p>
+          </div>
+          <div class="detail-item">
+            <p class="detail-num">— Clínicas & Serviços</p>
+            <p class="detail-title">Credibilidade que gera agendamentos</p>
+            <p class="detail-desc">Páginas que transmitem confiança e transformam dúvidas em contatos.</p>
+          </div>
+          <div class="detail-item">
+            <p class="detail-num">— Academias & Wellness</p>
+            <p class="detail-title">Energia visual que motiva a ação</p>
+            <p class="detail-desc">Landing pages focadas em captura de leads e matrículas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETOS COMPLETOS -->
+  <section id="projetos">
+    <div class="container">
+      <div class="section-header fade-up" style="margin-bottom:80px">
+        <div>
+          <p class="section-tag" style="margin-bottom:12px">Portfólio completo</p>
+          <h2 class="section-title">Cada projeto, <em style="font-family:'Playfair Display',serif;font-style:italic">uma
+              estratégia.</em></h2>
+        </div>
+      </div>
+
+      <!-- Purple Açaí -->
+      <div class="project-full fade-up">
+
+        <a href="https://landing-page-purple-acai.vercel.app/" target="_blank" class="project-image-link">
+
+          <img class="project-img-full" src="assets/Purple-Açai.png" alt="Purple Açaí"
+            onerror="this.style.background='#2d1b52';this.style.minHeight='400px'">
+
+          <div class="project-image-overlay">
+            <span>Ver projeto ↗</span>
+          </div>
+
+        </a>
+
+        <div class="project-content">
+
+          <p class="project-context">Açaíteria · Conversão</p>
+
+          <h3 class="project-big-name">Purple Açaí</h3>
+
+          <p class="project-problem">O desafio</p>
+
+          <p class="project-desc">
+            Uma açaíteria premium sem presença digital. As vendas dependiam do boca a boca e do Instagram.
+            O negócio precisava de uma página que gerasse pedidos diretos pelo WhatsApp, transmitisse
+            qualidade e se destacasse da concorrência.
+          </p>
+
+          <div class="project-tags">
+            <span class="tag">Conversão</span>
+            <span class="tag">WhatsApp CTA</span>
+            <span class="tag">UI vibrante</span>
+            <span class="tag">Mobile-first</span>
+          </div>
+
+          <a href="https://wa.me/5538998510908?text=Quero%20algo%20assim%20para%20meu%20negócio" class="project-cta">
+
+            Quero algo assim para meu negócio →
+
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- L'Essence -->
+      <div class="project-full fade-up" style="transition-delay:0.05s">
+
+        <a href="https://l-essence-restaurant-landing-page.vercel.app/" target="_blank" class="project-image-link">
+
+          <img class="project-img-full" src="assets/L'Essence.png" alt="L'Essence"
+            onerror="this.style.background='#1a1200';this.style.minHeight='400px'">
+
+          <div class="project-image-overlay">
+            <span>Ver projeto ↗</span>
+          </div>
+
+        </a>
+
+        <div class="project-content">
+          <p class="project-context">Fine Dining · Experiência</p>
+
+          <h3 class="project-big-name">L'Essence</h3>
+
+          <p class="project-problem">O desafio</p>
+
+          <p class="project-desc">
+            Um restaurante de alta gastronomia com identidade visual fraca online.
+            A página precisava capturar a sofisticação do ambiente e transformar
+            visitantes em reservas — transmitindo experiência antes da primeira garfada.
+          </p>
+
+          <div class="project-tags">
+            <span class="tag">Premium UX</span>
+            <span class="tag">Reservas online</span>
+            <span class="tag">Identidade visual</span>
+            <span class="tag">Tipografia editorial</span>
+          </div>
+
+          <a href="https://wa.me/5538998510908?text=Quero%20algo%20assim%20para%20meu%20negócio" class="project-cta">
+
+            Quero algo assim para meu negócio →
+
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Essenza Shop -->
+      <div class="project-full fade-up" style="transition-delay:0.1s">
+
+        <a href="https://essenza-shop-landing-page.vercel.app/" target="_blank" class="project-image-link">
+
+          <img class="project-img-full" src="assets/Essenza-shop.png" alt="Essenza Shop"
+            onerror="this.style.background='#1c1c1c';this.style.minHeight='400px'">
+
+          <div class="project-image-overlay">
+            <span>Ver projeto ↗</span>
+          </div>
+
+        </a>
+
+        <div class="project-content">
+          <p class="project-context">Moda · Branding Editorial</p>
+
+          <h3 class="project-big-name">Essenza Shop</h3>
+
+          <p class="project-problem">O desafio</p>
+
+          <p class="project-desc">
+            Uma boutique de moda essencial que precisava de uma presença digital à
+            altura do seu produto. O briefing era claro: luxo silencioso, nada
+            excessivo — a mesma filosofia da marca aplicada ao digital.
+          </p>
+
+          <div class="project-tags">
+            <span class="tag">Editorial</span>
+            <span class="tag">Quiet luxury</span>
+            <span class="tag">Lookbook digital</span>
+            <span class="tag">Branding</span>
+          </div>
+
+          <a href="https://wa.me/5538998510908?text=Quero%20algo%20assim%20para%20meu%20negócio" class="project-cta">
+
+            Quero algo assim para meu negócio →
+
+          </a>
+        </div>
+
+      </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div>
+          <p class="section-tag" style="margin-bottom:12px">O que ofereço</p>
+          <h2 class="section-title">Landing pages que<br>vendem por você.</h2>
+        </div>
+      </div>
+      <div class="servicos-grid fade-up" style="transition-delay:0.1s">
+        <div class="servico-card">
+          <div class="servico-icon"></div>
+          <h3 class="servico-name">Landing Page Local</h3>
+          <p class="servico-desc">Página focada em conversão para negócios locais. Design moderno, CTAs estratégicos e
+            integração direta com WhatsApp.</p>
+        </div>
+        <div class="servico-card">
+          <div class="servico-icon"></div>
+          <h3 class="servico-name">Site Institucional</h3>
+          <p class="servico-desc">Presença digital completa para clínicas, escritórios e empresas que precisam
+            transmitir credibilidade e profissionalismo.</p>
+        </div>
+        <div class="servico-card">
+          <div class="servico-icon"></div>
+          <h3 class="servico-name">Página de Conversão</h3>
+          <p class="servico-desc">Estrutura focada em capturar leads, agendar consultas ou direcionar pedidos. Objetivo
+            único, resultado máximo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAL -->
+  <section id="diferencial">
+    <div class="container">
+      <div class="diferencial-grid">
+        <div class="diferencial-left fade-up">
+          <p class="section-tag" style="margin-bottom:20px">Por que me escolher</p>
+          <h2 class="diferencial-headline">Design que converte.<br>Engenharia que<br><em
+              style="font-family:'Playfair Display',serif;font-style:italic">funciona.</em></h2>
+          <p class="diferencial-sub" style="margin-top:20px">Minha base em backend me dá uma vantagem que a maioria dos
+            designers não tem: eu entendo a estrutura que sustenta o que você vê.</p>
+        </div>
+        <div class="features-list fade-up" style="transition-delay:0.1s">
+          <div class="feature">
+            <p class="feature-n">01</p>
+            <h4 class="feature-title">Performance otimizada</h4>
+            <p class="feature-desc">Sites rápidos que carregam em segundos — porque velocidade impacta diretamente na
+              conversão e no SEO.</p>
+          </div>
+          <div class="feature">
+            <p class="feature-n">02</p>
+            <h4 class="feature-title">Estrutura escalável</h4>
+            <p class="feature-desc">Código limpo e organizado que permite evoluções futuras sem reconstruir do zero.</p>
+          </div>
+          <div class="feature">
+            <p class="feature-n">03</p>
+            <h4 class="feature-title">Integração com APIs</h4>
+            <p class="feature-desc">WhatsApp, formulários, sistemas de reserva — conexões que automatizam o atendimento.
+            </p>
+          </div>
+          <div class="feature">
+            <p class="feature-n">04</p>
+            <h4 class="feature-title">Experiência completa</h4>
+            <p class="feature-desc">Do briefing ao ar — design, desenvolvimento e entrega em um único fluxo sem fricção.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section id="processo">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div>
+          <p class="section-tag" style="margin-bottom:12px">Como funciona</p>
+          <h2 class="section-title">Simples. Direto. <em
+              style="font-family:'Playfair Display',serif;font-style:italic">Entregue.</em></h2>
+        </div>
+      </div>
+      <div class="process-steps fade-up" style="transition-delay:0.1s">
+        <div class="step" style="padding-right:40px">
+          <p class="step-num">01 — Início</p>
+          <h4 class="step-title">Briefing rápido</h4>
+          <p class="step-desc">Conversa de 30 minutos para entender seu negócio, público e objetivo. Sem formulários
+            longos.</p>
+        </div>
+        <div class="step" style="padding:0 40px">
+          <p class="step-num">02 — Criação</p>
+          <h4 class="step-title">Design & Estrutura</h4>
+          <p class="step-desc">Layout completo com copywriting estratégico, hierarquia visual e foco em conversão.</p>
+        </div>
+        <div class="step" style="padding:0 40px">
+          <p class="step-num">03 — Construção</p>
+          <h4 class="step-title">Desenvolvimento</h4>
+          <p class="step-desc">Código limpo, responsivo e rápido. Sem templates genéricos, cada projeto é único.</p>
+        </div>
+        <div class="step" style="padding-left:40px">
+          <p class="step-num">04 — Entrega</p>
+          <h4 class="step-title">Online & Otimizado</h4>
+          <p class="step-desc">Publicação, ajustes finais e acompanhamento. Seu negócio no ar, pronto para converter.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section id="cta-final">
+    <div class="container fade-up">
+      <p class="cta-eyebrow">Pronto para começar?</p>
+      <h2 class="cta-h2">Seu negócio pode parecer maior do que ele é hoje.</h2>
+      <p class="cta-sub">Vamos criar uma landing page que transforma visitantes em clientes.</p>
+      <a href="https://wa.me/5538998510908?text=Olá%20Eduardo!%20Quero%20criar%20uma%20landing%20page%20para%20meu%20negócio."
+        class="btn-whatsapp">Falar no WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <p class="footer-name">Eduardo Souza</p>
+        <p class="footer-pos">Digital Experience Designer</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="https://www.linkedin.com/in/eduardo-souza-582a2a389">LinkedIn</a>
+      </div>
+      <p class="footer-contact">Email: edu.dev.codes@gmail.com</p>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>
