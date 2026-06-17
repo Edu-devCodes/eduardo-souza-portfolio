@@ -4,17 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eduardo Souza — Digital Experience Designer</title>
+  <title>Eduardo Souza — Landing Pages para Negócios Locais</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"
     rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box }
 
     :root {
       --serif: 'Playfair Display', Georgia, serif;
@@ -26,12 +22,11 @@
       --gray-light: #c8c8c8;
       --off-white: #f7f6f3;
       --white: #ffffff;
-      --accent: #0a0a0a;
+      --whatsapp: #25D366;
+      --whatsapp-dark: #1da851;
     }
 
-    html {
-      scroll-behavior: smooth
-    }
+    html { scroll-behavior: smooth }
 
     body {
       font-family: var(--sans);
@@ -43,880 +38,776 @@
 
     /* NAV */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.94);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
       padding: 0 5vw
     }
 
     .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
       height: 64px
     }
 
     .nav-logo {
-      font-family: var(--serif);
-      font-size: 17px;
-      color: var(--black);
-      text-decoration: none;
-      letter-spacing: 0.01em
+      font-family: var(--serif); font-size: 17px;
+      color: var(--black); text-decoration: none;
+      letter-spacing: 0.01em; flex-shrink: 0
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none
     }
+
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--black); transition: all 0.3s
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg) }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0 }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg) }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none }
 
     .nav-links a {
-      font-size: 13px;
-      color: var(--gray-dark);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: color 0.2s
+      font-size: 13px; color: var(--gray-dark);
+      text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s
     }
 
-    .nav-links a:hover {
-      color: var(--black)
-    }
+    .nav-links a:hover { color: var(--black) }
 
     .nav-cta {
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--black);
-      text-decoration: none;
-      border: 1px solid var(--black);
-      padding: 8px 20px;
-      transition: all 0.25s
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--black); text-decoration: none;
+      border: 1px solid var(--black); padding: 8px 20px;
+      transition: all 0.25s; flex-shrink: 0
     }
 
-    .nav-cta:hover {
-      background: var(--black);
-      color: var(--white)
+    .nav-cta:hover { background: var(--black); color: var(--white) }
+
+    .nav-drawer {
+      display: none; position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(255,255,255,0.98); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      z-index: 99; padding: 24px 5vw 32px;
+      flex-direction: column
+    }
+
+    .nav-drawer.open { display: flex }
+
+    .nav-drawer li { list-style: none; border-bottom: 1px solid rgba(0,0,0,0.06) }
+
+    .nav-drawer li a {
+      display: block; padding: 16px 0;
+      font-size: 15px; color: var(--gray-dark);
+      text-decoration: none; letter-spacing: 0.03em
+    }
+
+    .nav-drawer-cta {
+      margin-top: 20px; display: block;
+      background: var(--whatsapp) !important;
+      color: white !important; text-align: center;
+      padding: 15px !important; font-weight: 500;
+      border-radius: 2px
     }
 
     /* SECTIONS */
-    section {
-      padding: 100px 5vw
-    }
+    section { padding: 100px 5vw }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto
-    }
+    .container { max-width: 1200px; margin: 0 auto }
 
     /* HERO */
     #hero {
-      padding-top: 140px;
-      padding-bottom: 120px;
-      min-height: 100vh;
-      display: flex;
-      align-items: center
+      padding-top: 140px; padding-bottom: 120px;
+      min-height: 100vh; display: flex; align-items: center
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 80px; align-items: center
     }
 
     .hero-tag {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gray-mid);
-      margin-bottom: 28px;
-      display: block
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gray-mid); margin-bottom: 28px; display: block
     }
 
     .hero-h1 {
       font-family: var(--serif);
-      font-size: clamp(2.6rem, 4.2vw, 3.8rem);
-      font-weight: 400;
-      line-height: 1.18;
-      color: var(--black);
-      margin-bottom: 28px
+      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+      font-weight: 400; line-height: 1.15;
+      color: var(--black); margin-bottom: 28px
     }
 
-    .hero-h1 em {
-      font-style: italic;
-      color: var(--gray-dark)
-    }
+    .hero-h1 em { font-style: italic; color: var(--gray-dark) }
 
     .hero-sub {
-      font-size: 16px;
-      color: var(--gray-dark);
-      line-height: 1.7;
-      max-width: 440px;
-      margin-bottom: 48px
+      font-size: 16px; color: var(--gray-dark);
+      line-height: 1.75; max-width: 480px; margin-bottom: 20px
     }
 
-    .hero-ctas {
-      display: flex;
-      gap: 16px;
-      align-items: center
+    .hero-nicho-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 44px }
+
+    .hero-nicho-tag {
+      font-size: 11px; letter-spacing: 0.08em;
+      color: var(--gray-mid); border: 1px solid rgba(0,0,0,0.12);
+      padding: 5px 12px; text-transform: uppercase
     }
+
+    .hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap }
 
     .btn-primary {
-      background: var(--black);
-      color: var(--white);
-      padding: 14px 32px;
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid var(--black);
-      transition: all 0.25s;
-      display: inline-block
+      background: var(--black); color: var(--white);
+      padding: 15px 34px; font-size: 13px; letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      border: 1px solid var(--black); transition: all 0.25s; display: inline-block
     }
 
-    .btn-primary:hover {
-      background: var(--off-black)
-    }
+    .btn-primary:hover { background: var(--off-black) }
 
     .btn-secondary {
-      background: transparent;
-      color: var(--black);
-      padding: 14px 32px;
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid rgba(0, 0, 0, 0.25);
-      transition: all 0.25s;
-      display: inline-block
+      background: transparent; color: var(--black);
+      padding: 15px 34px; font-size: 13px; letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(0,0,0,0.25); transition: all 0.25s; display: inline-block
     }
 
-    .btn-secondary:hover {
-      border-color: var(--black)
-    }
+    .btn-secondary:hover { border-color: var(--black) }
 
-    .hero-img-wrap {
-      position: relative
-    }
+    .hero-img-wrap { position: relative; opacity: 0.82 }
 
     .hero-img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      object-position: top center;
-      filter: grayscale(15%);
-      border-radius: 5px;
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; object-position: top center;
+      filter: grayscale(30%); border-radius: 4px
     }
 
     .hero-img-label {
-      position: absolute;
-      bottom: 28px;
-      right: 28px;
-      background: var(--white);
-      padding: 14px 20px;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gray-dark)
+      position: absolute; bottom: 24px; right: 24px;
+      background: var(--white); padding: 12px 18px;
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gray-dark)
     }
 
-    /* PROOF / QUICK PROJECTS */
-    #proof {
-      background: var(--off-white);
-      padding: 80px 5vw
+    .hero-img-label::before {
+      content: '';
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: #4ade80;
+      margin-right: 8px; vertical-align: middle;
+      animation: pulse-dot 2s ease-in-out infinite
     }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1) }
+      50% { opacity: 0.5; transform: scale(0.75) }
+    }
+
+    /* BADGES */
+    #badges {
+      padding: 36px 5vw;
+      background: var(--black)
+    }
+
+    .badges-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: center; gap: 36px; flex-wrap: wrap
+    }
+
+    .badge-item {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--gray-light); font-size: 12px;
+      letter-spacing: 0.1em; text-transform: uppercase
+    }
+
+    .badge-icon { font-size: 15px; opacity: 0.65 }
+
+    .badges-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.1) }
+
+    /* PROOF */
+    #proof { background: var(--off-white); padding: 80px 5vw }
 
     .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 64px
+      display: flex; align-items: baseline;
+      justify-content: space-between; margin-bottom: 64px
     }
 
     .section-tag {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gray-mid)
+      font-size: 11px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--gray-mid)
     }
 
     .section-title {
       font-family: var(--serif);
       font-size: clamp(2rem, 3vw, 2.8rem);
-      font-weight: 400;
-      color: var(--black)
+      font-weight: 400; color: var(--black)
     }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px
-    }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px }
 
     .project-card {
-      background: var(--white);
-      overflow: hidden;
-      cursor: pointer;
-      position: relative
+      background: var(--white); overflow: hidden; cursor: pointer;
+      position: relative; display: block; text-decoration: none;
+      color: inherit; transition: transform 0.4s ease
     }
 
-    .project-card:hover .project-img {
-      transform: scale(1.03)
-    }
+    .project-card:hover { transform: translateY(-6px) }
+    .project-card:hover .project-img { transform: scale(1.03) }
+    .project-card:hover .project-hover { opacity: 1 }
 
-    .project-card:hover .project-hover {
-      opacity: 1
-    }
-
-    .project-img-wrap {
-      overflow: hidden;
-      aspect-ratio: 4/3
-    }
+    .project-img-wrap { overflow: hidden; aspect-ratio: 4/3 }
 
     .project-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 100%; height: 100%; object-fit: cover;
       transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     }
 
-.project-hover {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.85);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  transition: opacity 0.3s;
-
-  border-radius: 24px;
-}
+    .project-hover {
+      position: absolute; inset: 0;
+      background: rgba(10,10,10,0.85);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s
+    }
 
     .project-hover-text {
-      color: var(--white);
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: var(--white); font-size: 12px; letter-spacing: 0.12em;
+      text-transform: uppercase; border: 1px solid rgba(255,255,255,0.4);
       padding: 10px 24px
     }
 
-    .project-info {
-      padding: 24px 28px 28px
-    }
+    .project-info { padding: 24px 28px 28px }
 
-    .project-num {
-      font-size: 11px;
-      color: var(--gray-mid);
-      letter-spacing: 0.08em;
-      margin-bottom: 8px
-    }
+    .project-num { font-size: 11px; color: var(--gray-mid); letter-spacing: 0.08em; margin-bottom: 8px }
 
     .project-name {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--black);
-      margin-bottom: 6px
+      font-family: var(--serif); font-size: 22px;
+      font-weight: 400; color: var(--black); margin-bottom: 6px
     }
 
-    .project-vibe {
-      font-size: 13px;
-      color: var(--gray-mid)
+    .project-vibe { font-size: 13px; color: var(--gray-mid) }
+
+    /* DOR */
+    #dor { background: var(--white); padding: 100px 5vw }
+
+    .dor-header { text-align: center; max-width: 680px; margin: 0 auto 72px }
+
+    .dor-header .section-tag { margin-bottom: 16px; display: block }
+
+    .dor-title {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      font-weight: 400; line-height: 1.25;
+      color: var(--black); margin-bottom: 20px
     }
+
+    .dor-sub { font-size: 15px; color: var(--gray-dark); line-height: 1.75 }
+
+    .dor-compare {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; max-width: 900px; margin: 0 auto 56px
+    }
+
+    .dor-col { padding: 44px 40px }
+    .dor-col-sem { background: var(--off-white) }
+    .dor-col-com { background: var(--black); color: var(--white) }
+
+    .dor-col-label {
+      font-size: 11px; letter-spacing: 0.16em;
+      text-transform: uppercase; margin-bottom: 32px; display: block
+    }
+
+    .dor-col-sem .dor-col-label { color: var(--gray-mid) }
+    .dor-col-com .dor-col-label { color: var(--gray-light) }
+
+    .dor-list { list-style: none; display: flex; flex-direction: column; gap: 18px }
+
+    .dor-list li {
+      display: flex; align-items: flex-start;
+      gap: 12px; font-size: 14px; line-height: 1.55
+    }
+
+    .dor-col-sem .dor-list li { color: var(--gray-dark) }
+    .dor-col-com .dor-list li { color: rgba(255,255,255,0.8) }
+
+    .dor-icon { flex-shrink: 0; margin-top: 1px; font-size: 13px }
+
+    .dor-stat {
+      text-align: center; max-width: 580px; margin: 0 auto;
+      padding: 36px; border: 1px solid rgba(0,0,0,0.08)
+    }
+
+    .dor-stat p { font-size: 14px; color: var(--gray-dark); line-height: 1.7 }
+
+    .dor-stat strong {
+      font-family: var(--serif); font-size: 18px; font-weight: 400;
+      color: var(--black); display: block; margin-bottom: 10px
+    }
+
+    .dor-cta-wrap { text-align: center; margin-top: 52px }
 
     /* SOBRE */
-    #sobre {
-      background: var(--white)
-    }
+    #sobre { background: var(--white) }
 
-    .sobre-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: start
-    }
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start }
 
     .sobre-label {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gray-mid);
-      margin-bottom: 48px
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gray-mid); margin-bottom: 48px
     }
 
     .sobre-text {
       font-family: var(--serif);
       font-size: clamp(1.5rem, 2.2vw, 2rem);
-      font-weight: 400;
-      line-height: 1.5;
-      color: var(--black);
-      margin-bottom: 28px
+      font-weight: 400; line-height: 1.5; color: var(--black); margin-bottom: 28px
     }
 
-    .sobre-sub {
-      font-size: 15px;
-      color: var(--gray-dark);
-      line-height: 1.8
-    }
+    .sobre-sub { font-size: 15px; color: var(--gray-dark); line-height: 1.8 }
 
-    .sobre-detail {
-      padding-top: 80px
-    }
+    .sobre-detail { padding-top: 80px }
 
-    .detail-item {
-      padding: 28px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08)
-    }
+    .detail-item { padding: 28px 0; border-bottom: 1px solid rgba(0,0,0,0.08) }
+    .detail-item:first-child { border-top: 1px solid rgba(0,0,0,0.08) }
 
-    .detail-item:first-child {
-      border-top: 1px solid rgba(0, 0, 0, 0.08)
-    }
-
-    .detail-num {
-      font-size: 11px;
-      color: var(--gray-mid);
-      margin-bottom: 8px;
-      letter-spacing: 0.04em
-    }
-
-    .detail-title {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--black);
-      margin-bottom: 6px
-    }
-
-    .detail-desc {
-      font-size: 14px;
-      color: var(--gray-dark);
-      line-height: 1.6
-    }
+    .detail-num { font-size: 11px; color: var(--gray-mid); margin-bottom: 8px; letter-spacing: 0.04em }
+    .detail-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 6px }
+    .detail-desc { font-size: 14px; color: var(--gray-dark); line-height: 1.6 }
 
     /* PROJETOS */
-    #projetos {
-      background: var(--off-white)
-    }
+    #projetos { background: var(--off-white) }
 
     .project-full {
-      margin-bottom: 80px;
-      background: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      overflow: hidden
+      margin-bottom: 80px; background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr; overflow: hidden
     }
 
-    .project-full:nth-child(even) {
-      direction: rtl
-    }
+    .project-full:nth-child(even) { direction: rtl }
+    .project-full:nth-child(even) > * { direction: ltr }
 
-    .project-full:nth-child(even)>* {
-      direction: ltr
+    .project-image-link {
+      position: relative; display: block; overflow: hidden; cursor: pointer
     }
 
     .project-img-full {
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      width: 100%;
-      display: block
+      width: 100%; display: block;
+      transition: transform 0.8s cubic-bezier(.16,1,.3,1), filter 0.8s cubic-bezier(.16,1,.3,1)
     }
 
+    .project-image-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.18); backdrop-filter: blur(4px);
+      opacity: 0; transition: opacity .5s ease
+    }
+
+    .project-image-overlay span {
+      color: white; font-size: .95rem; letter-spacing: .12em; text-transform: uppercase;
+      transform: translateY(10px); transition: transform .4s ease
+    }
+
+    .project-image-link:hover .project-img-full { transform: scale(1.05); filter: brightness(.75) }
+    .project-image-link:hover .project-image-overlay { opacity: 1 }
+    .project-image-link:hover .project-image-overlay span { transform: translateY(0) }
+
     .project-content {
-      padding: 60px 56px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center
+      padding: 60px 56px; display: flex;
+      flex-direction: column; justify-content: center
     }
 
     .project-context {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gray-mid);
-      margin-bottom: 20px
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gray-mid); margin-bottom: 20px
     }
 
     .project-big-name {
       font-family: var(--serif);
       font-size: clamp(2rem, 3vw, 2.8rem);
-      font-weight: 400;
-      color: var(--black);
-      margin-bottom: 24px
+      font-weight: 400; color: var(--black); margin-bottom: 24px
     }
 
     .project-problem {
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--gray-mid);
-      margin-bottom: 10px
+      font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--gray-mid); margin-bottom: 10px
     }
 
-    .project-desc {
-      font-size: 15px;
-      color: var(--gray-dark);
-      line-height: 1.75;
-      margin-bottom: 32px
-    }
+    .project-desc { font-size: 15px; color: var(--gray-dark); line-height: 1.75; margin-bottom: 32px }
 
-    .project-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 36px
-    }
+    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px }
 
     .tag {
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--gray-dark);
-      border: 1px solid rgba(0, 0, 0, 0.15);
-      padding: 5px 12px
+      font-size: 11px; letter-spacing: 0.08em; color: var(--gray-dark);
+      border: 1px solid rgba(0,0,0,0.15); padding: 5px 12px
     }
 
     .project-cta {
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--black);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid var(--black);
-      padding-bottom: 2px;
-      transition: opacity 0.2s
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--black); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid var(--black); padding-bottom: 2px; transition: opacity 0.2s
     }
 
-    .project-cta:hover {
-      opacity: 0.6
+    .project-cta:hover { opacity: 0.6 }
+
+    /* MID CTA */
+    .mid-cta-strip {
+      background: var(--off-white); padding: 56px 5vw;
+      text-align: center; border-top: 1px solid rgba(0,0,0,0.06)
     }
 
-    /* SERVIÇOS */
-    #servicos {
-      background: var(--black);
-      color: var(--white)
+    .mid-cta-strip p { font-size: 14px; color: var(--gray-dark); margin-bottom: 20px }
+
+    .mid-cta-strip p strong {
+      font-family: var(--serif); font-weight: 400;
+      font-size: 19px; color: var(--black); display: block; margin-bottom: 6px
     }
 
-    #servicos .section-title {
-      color: var(--white)
+    /* PRICING */
+    #servicos { background: var(--black); color: var(--white) }
+    #servicos .section-title { color: var(--white) }
+    #servicos .section-tag { color: var(--gray-light) }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 64px
     }
 
-    #servicos .section-tag {
-      color: var(--gray-light)
+    .pricing-card {
+      background: #141414; padding: 44px 36px;
+      position: relative; transition: background 0.3s
     }
 
-    .servicos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      margin-top: 64px
+    .pricing-card:hover { background: #1c1c1c }
+
+    .pricing-card.featured { background: #1c1c1c; border-top: 2px solid var(--white) }
+
+    .pricing-badge {
+      display: inline-block; font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--black);
+      background: var(--white); padding: 4px 10px; margin-bottom: 28px
     }
 
-    .servico-card {
-      background: #141414;
-      padding: 44px 36px;
-      transition: background 0.3s
+    .pricing-name {
+      font-family: var(--serif); font-size: 22px;
+      font-weight: 400; color: var(--white); margin-bottom: 8px
     }
 
-    .servico-card:hover {
-      background: #1c1c1c
+    .pricing-from {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gray-mid); margin-bottom: 4px
     }
 
-    .servico-icon {
-      width: 36px;
-      height: 2px;
-      background: var(--white);
-      margin-bottom: 36px;
-      opacity: 0.3
+    .pricing-price {
+      font-size: 36px; font-weight: 300; color: var(--white);
+      letter-spacing: -0.02em; margin-bottom: 28px; line-height: 1
     }
 
-    .servico-name {
-      font-family: var(--serif);
-      font-size: 21px;
-      font-weight: 400;
-      color: var(--white);
-      margin-bottom: 16px
+    .pricing-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px }
+
+    .pricing-list li {
+      font-size: 13px; color: var(--gray-mid);
+      line-height: 1.5; padding-left: 18px; position: relative
     }
 
-    .servico-desc {
-      font-size: 14px;
-      color: var(--gray-mid);
-      line-height: 1.7
+    .pricing-list li::before { content: '—'; position: absolute; left: 0; color: rgba(255,255,255,0.2) }
+
+    .pricing-card.featured .pricing-list li { color: rgba(255,255,255,0.75) }
+
+    .pricing-cta {
+      display: block; text-align: center; font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; padding: 13px 20px; transition: all 0.25s
     }
+
+    .pricing-card:not(.featured) .pricing-cta {
+      color: var(--gray-light); border: 1px solid rgba(255,255,255,0.15)
+    }
+
+    .pricing-card:not(.featured) .pricing-cta:hover {
+      border-color: rgba(255,255,255,0.5); color: var(--white)
+    }
+
+    .pricing-card.featured .pricing-cta { background: var(--white); color: var(--black) }
+    .pricing-card.featured .pricing-cta:hover { opacity: 0.88 }
+
+    .pricing-note { text-align: center; margin-top: 32px; font-size: 13px; color: var(--gray-mid) }
 
     /* DIFERENCIAL */
-    #diferencial {
-      background: var(--off-white)
-    }
+    #diferencial { background: var(--off-white) }
 
-    .diferencial-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: start
-    }
+    .diferencial-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start }
 
-    .diferencial-left {
-      position: sticky;
-      top: 100px
-    }
+    .diferencial-left { position: sticky; top: 100px }
 
     .diferencial-headline {
       font-family: var(--serif);
-      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-      font-weight: 400;
-      color: var(--black);
-      line-height: 1.4;
-      margin-bottom: 20px
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      font-weight: 400; color: var(--black); line-height: 1.35; margin-bottom: 20px
     }
 
-    .diferencial-sub {
-      font-size: 14px;
-      color: var(--gray-dark);
-      line-height: 1.7
+    .diferencial-sub { font-size: 14px; color: var(--gray-dark); line-height: 1.75 }
+
+    .diferencial-disclaimer {
+      margin-top: 24px; padding: 16px 20px;
+      background: var(--white); border-left: 2px solid rgba(0,0,0,0.15);
+      font-size: 13px; color: var(--gray-dark); line-height: 1.6
     }
 
-    .features-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px
-    }
+    .features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 2px }
 
-    .feature {
-      padding: 36px;
-      background: var(--white)
-    }
+    .feature { padding: 36px; background: var(--white) }
 
-    .feature-n {
-      font-size: 11px;
-      color: var(--gray-mid);
-      letter-spacing: 0.08em;
-      margin-bottom: 20px
-    }
+    .feature-n { font-size: 11px; color: var(--gray-mid); letter-spacing: 0.08em; margin-bottom: 20px }
 
-    .feature-title {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--black);
-      margin-bottom: 10px
-    }
+    .feature-title { font-size: 16px; font-weight: 500; color: var(--black); margin-bottom: 10px }
 
-    .feature-desc {
-      font-size: 14px;
-      color: var(--gray-dark);
-      line-height: 1.6
-    }
+    .feature-desc { font-size: 14px; color: var(--gray-dark); line-height: 1.6 }
 
     /* PROCESSO */
-    #processo {
-      background: var(--white)
-    }
+    #processo { background: var(--white) }
 
     .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      margin-top: 64px;
-      border-top: 1px solid rgba(0, 0, 0, 0.08)
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; margin-top: 64px; border-top: 1px solid rgba(0,0,0,0.08)
     }
 
-    .step {
-      padding: 44px 0 44px;
-      border-right: 1px solid rgba(0, 0, 0, 0.08)
-    }
+    .step { padding: 44px 0; border-right: 1px solid rgba(0,0,0,0.08) }
+    .step:last-child { border-right: none }
 
-    .step:last-child {
-      border-right: none
-    }
-
-    .step-num {
-      font-size: 11px;
-      color: var(--gray-mid);
-      letter-spacing: 0.1em;
-      margin-bottom: 24px
-    }
+    .step-num { font-size: 11px; color: var(--gray-mid); letter-spacing: 0.1em; margin-bottom: 24px }
 
     .step-title {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--black);
-      margin-bottom: 14px
+      font-family: var(--serif); font-size: 20px;
+      font-weight: 400; color: var(--black); margin-bottom: 14px
     }
 
-    .step-desc {
-      font-size: 13px;
-      color: var(--gray-dark);
-      line-height: 1.65;
-      padding-right: 24px
-    }
+    .step-desc { font-size: 13px; color: var(--gray-dark); line-height: 1.65; padding-right: 24px }
 
     /* CTA FINAL */
-    #cta-final {
-      background: var(--black);
-      text-align: center;
-      padding: 140px 5vw
-    }
+    #cta-final { background: var(--black); text-align: center; padding: 140px 5vw }
 
     .cta-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gray-mid);
-      margin-bottom: 32px
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gray-mid); margin-bottom: 32px
     }
 
     .cta-h2 {
       font-family: var(--serif);
       font-size: clamp(2.2rem, 4vw, 3.8rem);
-      font-weight: 400;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 24px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto
+      font-weight: 400; color: var(--white); line-height: 1.2;
+      margin-bottom: 24px; max-width: 700px;
+      margin-left: auto; margin-right: auto
     }
 
     .cta-sub {
-      font-size: 16px;
-      color: var(--gray-mid);
-      margin-bottom: 48px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto
+      font-size: 16px; color: var(--gray-mid); margin-bottom: 48px;
+      max-width: 480px; margin-left: auto; margin-right: auto
     }
+
+    .cta-guarantee { margin-top: 24px; font-size: 12px; color: var(--gray-mid); letter-spacing: 0.04em }
 
     .btn-whatsapp {
-      background: var(--white);
-      color: var(--black);
-      padding: 16px 44px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      display: inline-block;
-      transition: opacity 0.25s;
-      font-weight: 500
+      background: var(--whatsapp); color: var(--white);
+      padding: 17px 48px; font-size: 13px; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: background 0.25s; font-weight: 500
     }
 
-    .btn-whatsapp:hover {
-      opacity: 0.88
+    .btn-whatsapp:hover { background: var(--whatsapp-dark) }
+
+    .btn-whatsapp svg, #sticky-wa svg { width: 18px; height: 18px; fill: currentColor }
+
+    /* STICKY WA */
+    #sticky-wa {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      background: var(--whatsapp); color: white; text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 22px; font-size: 12px; letter-spacing: 0.06em;
+      text-transform: uppercase; font-weight: 500;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.35);
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.4s, transform 0.4s, background 0.2s;
+      pointer-events: none
     }
 
-    .project-image-link {
-      position: relative;
-      display: block;
-      overflow: hidden;
-      border-radius: 24px;
-      cursor: pointer;
-    }
-
-    .project-img-full {
-      width: 100%;
-      display: block;
-      transition:
-        transform 0.8s cubic-bezier(.16, 1, .3, 1),
-        filter 0.8s cubic-bezier(.16, 1, .3, 1);
-    }
-
-    .project-image-overlay {
-      position: absolute;
-      inset: 0;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background: rgba(0, 0, 0, .18);
-      backdrop-filter: blur(4px);
-
-      opacity: 0;
-
-      transition:
-        opacity .5s ease,
-        backdrop-filter .5s ease;
-    }
-
-    .project-image-overlay span {
-      color: white;
-      font-size: .95rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      transform: translateY(10px);
-      transition: transform .4s ease;
-    }
-
-    .project-image-link:hover .project-img-full {
-      transform: scale(1.05);
-      filter: brightness(.75);
-    }
-
-    .project-image-link:hover .project-image-overlay {
-      opacity: 1;
-    }
-
-    .project-image-link:hover .project-image-overlay span {
-      transform: translateY(0);
-    }
+    #sticky-wa.show { opacity: 1; transform: translateY(0); pointer-events: all }
+    #sticky-wa:hover { background: var(--whatsapp-dark) }
 
     /* FOOTER */
-    footer {
-      background: #050505;
-      padding: 48px 5vw;
-      color: var(--gray-mid)
-    }
+    footer { background: #050505; padding: 48px 5vw; color: var(--gray-mid) }
 
     .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 24px
     }
 
-    .footer-name {
-      font-family: var(--serif);
-      font-size: 15px;
-      color: var(--white)
-    }
+    .footer-name { font-family: var(--serif); font-size: 15px; color: var(--white) }
+    .footer-pos { font-size: 12px; color: var(--gray-mid); margin-top: 4px; letter-spacing: 0.04em }
 
-    .footer-pos {
-      font-size: 12px;
-      color: var(--gray-mid);
-      margin-top: 4px;
-      letter-spacing: 0.04em
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 28px
-    }
+    .footer-links { display: flex; gap: 28px }
 
     .footer-links a {
-      font-size: 12px;
-      color: var(--gray-mid);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      transition: color 0.2s
+      font-size: 12px; color: var(--gray-mid); text-decoration: none;
+      letter-spacing: 0.06em; transition: color 0.2s
     }
 
-    .footer-links a:hover {
-      color: var(--white)
-    }
+    .footer-links a:hover { color: var(--white) }
 
-    .footer-contact {
-      font-size: 12px;
-      color: var(--gray-mid);
-      letter-spacing: 0.04em
-    }
+    .footer-contact { font-size: 12px; color: var(--gray-mid); letter-spacing: 0.04em }
 
-    /* FADE IN */
+    /* FADE UP */
     .fade-up {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94)
     }
 
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0)
-    }
+    .fade-up.visible { opacity: 1; transform: translateY(0) }
 
-    .project-card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav-links { display: none }
+      .nav-cta { display: none }
+      .nav-hamburger { display: flex }
 
-    .project-card {
-      cursor: pointer;
-      transition: transform 0.4s ease;
-    }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px }
 
-    .project-card:hover {
-      transform: translateY(-6px);
-    }
+      .hero-img-wrap {
+        order: 2; max-width: 260px;
+        margin: 0 auto; opacity: 0.7
+      }
 
-    @media(max-width:900px) {
+      .hero-h1 { font-size: clamp(2.2rem, 8vw, 3rem) }
 
-      .hero-grid,
       .sobre-grid,
       .diferencial-grid,
-      .project-full {
-        grid-template-columns: 1fr
-      }
+      .project-full { grid-template-columns: 1fr }
 
-      .project-full:nth-child(even) {
-        direction: ltr
-      }
+      .project-full:nth-child(even) { direction: ltr }
 
       .projects-grid,
-      .servicos-grid,
+      .pricing-grid,
       .features-list,
-      .process-steps {
-        grid-template-columns: 1fr
+      .process-steps { grid-template-columns: 1fr }
+
+      .project-content { padding: 40px 28px }
+
+      .dor-compare { grid-template-columns: 1fr }
+
+      .diferencial-left { position: static }
+
+      .step {
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        padding: 32px 0
       }
 
-      .hero-h1 {
-        font-size: 2.2rem
-      }
+      .step:last-child { border-bottom: none }
 
-      .project-content {
-        padding: 40px 32px
-      }
+      .step-desc { padding-right: 0 }
+
+      .badges-sep { display: none }
+      .badges-inner { gap: 18px }
+
+      #sticky-wa { padding: 13px 16px; font-size: 11px; bottom: 20px; right: 16px }
+
+      .footer-inner { flex-direction: column; text-align: center }
+      .footer-links { justify-content: center }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 72px 5vw }
+      #hero { padding-top: 110px; padding-bottom: 80px }
+      .hero-ctas { flex-direction: column; align-items: stretch }
+      .btn-primary, .btn-secondary { text-align: center }
+      .section-header { flex-direction: column; gap: 20px }
+      .project-content { padding: 32px 20px }
+      .dor-col { padding: 32px 22px }
+      .pricing-card { padding: 36px 26px }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- NAV -->
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-logo">Eduardo Souza</a>
       <ul class="nav-links">
         <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#servicos">Preços</a></li>
         <li><a href="#sobre">Sobre</a></li>
       </ul>
-      <a href="https://wa.me/5538998510908" class="nav-cta">Falar comigo</a>
+      <a href="https://wa.me/5538998510908?text=Olá%20Eduardo!%20Quero%20criar%20uma%20landing%20page%20para%20meu%20negócio." class="nav-cta">Falar comigo</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile drawer -->
+  <ul class="nav-drawer" id="nav-drawer">
+    <li><a href="#projetos" class="drawer-link">Projetos</a></li>
+    <li><a href="#servicos" class="drawer-link">Preços</a></li>
+    <li><a href="#sobre" class="drawer-link">Sobre</a></li>
+    <li><a href="https://wa.me/5538998510908?text=Olá%20Eduardo!%20Quero%20criar%20uma%20landing%20page%20para%20meu%20negócio." class="drawer-link nav-drawer-cta">💬 Falar no WhatsApp</a></li>
+  </ul>
 
   <!-- HERO -->
   <section id="hero">
     <div class="container">
       <div class="hero-grid">
+
         <div class="fade-up">
-          <span class="hero-tag">Digital Experience Designer</span>
-          <h1 class="hero-h1">Eu crio landing pages que fazem negócios <em>parecerem marcas.</em></h1>
-          <p class="hero-sub">Landing pages modernas, rápidas e estratégicas para negócios locais que querem mais
-            clientes e mais presença digital.</p>
+          <span class="hero-tag">Landing pages para negócios locais</span>
+          <h1 class="hero-h1">Seu negócio local merece um site que <em>vende enquanto você trabalha.</em></h1>
+          <p class="hero-sub">Crio landing pages para barbearias, restaurantes, clínicas, açaiterias e lojas que querem ser encontradas, parecer profissionais e converter clientes — sem depender só do Instagram.</p>
+          <div class="hero-nicho-tags">
+            <span class="hero-nicho-tag">Barbearias</span>
+            <span class="hero-nicho-tag">Restaurantes</span>
+            <span class="hero-nicho-tag">Clínicas</span>
+            <span class="hero-nicho-tag">Açaiterias</span>
+            <span class="hero-nicho-tag">Lojas</span>
+            <span class="hero-nicho-tag">Academias</span>
+          </div>
           <div class="hero-ctas">
-            <a href="#projetos" class="btn-primary">Ver projetos</a>
-            <a href="https://wa.me/5538998510908" class="btn-secondary">Falar comigo</a>
+            <a href="https://wa.me/5538998510908?text=Olá%20Eduardo!%20Quero%20criar%20uma%20landing%20page%20para%20meu%20negócio." class="btn-primary">Quero minha landing page →</a>
+            <a href="#projetos" class="btn-secondary">Ver projetos</a>
           </div>
         </div>
-        <div class="hero-img-wrap fade-up" style="transition-delay:0.15s">
+
+        <div class="hero-img-wrap fade-up" style="transition-delay:0.2s">
           <img class="hero-img" src="./assets/foto-portfólio.png" alt="Eduardo Souza"
-            onerror="this.style.background='#e8e6e0';this.style.display='block';this.style.minHeight='500px'">
-          <div class="hero-img-label">Available for projects</div>
+            onerror="this.style.background='#e8e6e0';this.style.display='block';this.style.minHeight='400px'">
+          <div class="hero-img-label">Disponível para projetos</div>
         </div>
+
       </div>
     </div>
   </section>
+
+  <!-- BADGES -->
+  <div id="badges">
+    <div class="badges-inner">
+      <div class="badge-item"><span class="badge-icon">📱</span> Mobile First</div>
+      <div class="badges-sep"></div>
+      <div class="badge-item"><span class="badge-icon">⚡</span> Carrega em &lt;2s</div>
+      <div class="badges-sep"></div>
+      <div class="badge-item"><span class="badge-icon">🔍</span> SEO Otimizado</div>
+      <div class="badges-sep"></div>
+      <div class="badge-item"><span class="badge-icon">💬</span> WhatsApp Integrado</div>
+      <div class="badges-sep"></div>
+      <div class="badge-item"><span class="badge-icon">🚀</span> Deploy Incluído</div>
+      <div class="badges-sep"></div>
+      <div class="badge-item"><span class="badge-icon">🎨</span> Zero Templates</div>
+    </div>
+  </div>
 
   <!-- PROOF RÁPIDA -->
   <section id="proof">
@@ -930,57 +821,87 @@
       </div>
       <div class="projects-grid fade-up" style="transition-delay:0.1s">
 
-        <div class="project-card">
-          <a href="https://landing-page-purple-acai.vercel.app/" class="project-card">
-            <div class="project-img-wrap">
-              <img class="project-img" src="assets/Purple-Açai.png" alt="Purple Açaí">
-              <div class="project-hover">
-                <span class="project-hover-text">Ver projeto</span>
-              </div>
-            </div>
+        <a href="https://landing-page-purple-acai.vercel.app/" target="_blank" class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/Purple-Açai.png" alt="Purple Açaí">
+            <div class="project-hover"><span class="project-hover-text">Ver projeto</span></div>
+          </div>
+          <div class="project-info">
+            <p class="project-num">01</p>
+            <h3 class="project-name">Purple Açaí</h3>
+            <p class="project-vibe">Conversão · Pedidos via WhatsApp</p>
+          </div>
+        </a>
 
-            <div class="project-info">
-              <p class="project-num">01</p>
-              <h3 class="project-name">Purple Açaí</h3>
-              <p class="project-vibe">Conversão · Pedidos via WhatsApp</p>
-            </div>
-          </a>
+        <a href="https://l-essence-restaurant-landing-page.vercel.app/" target="_blank" class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/L'Essence.png" alt="L'Essence">
+            <div class="project-hover"><span class="project-hover-text">Ver projeto</span></div>
+          </div>
+          <div class="project-info">
+            <p class="project-num">02</p>
+            <h3 class="project-name">L'Essence</h3>
+            <p class="project-vibe">Experiência gastronômica premium</p>
+          </div>
+        </a>
+
+        <a href="https://essenza-shop-landing-page.vercel.app/" target="_blank" class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/Essenza-shop.png" alt="Essenza Shop">
+            <div class="project-hover"><span class="project-hover-text">Ver projeto</span></div>
+          </div>
+          <div class="project-info">
+            <p class="project-num">03</p>
+            <h3 class="project-name">Essenza Shop</h3>
+            <p class="project-vibe">Branding editorial · Luxo silencioso</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DOR / NECESSIDADE -->
+  <section id="dor">
+    <div class="container">
+      <div class="dor-header fade-up">
+        <span class="section-tag">A realidade do mercado local</span>
+        <h2 class="dor-title">Seu negócio existe no Google? Porque é lá que seu próximo cliente está procurando.</h2>
+        <p class="dor-sub">Instagram some do feed. Boca a boca tem limite. Um site trabalha por você 24 horas por dia — e o cliente decide antes mesmo de ligar.</p>
+      </div>
+
+      <div class="dor-compare fade-up" style="transition-delay:0.1s">
+        <div class="dor-col dor-col-sem">
+          <span class="dor-col-label">Sem landing page</span>
+          <ul class="dor-list">
+            <li><span class="dor-icon">✕</span>Depende só de indicação e Instagram</li>
+            <li><span class="dor-icon">✕</span>Cliente pesquisa no Google, não te encontra</li>
+            <li><span class="dor-icon">✕</span>"Será que esse negócio é sério?"</li>
+            <li><span class="dor-icon">✕</span>Perde cliente para o concorrente com site</li>
+            <li><span class="dor-icon">✕</span>Precisa cobrar mais barato para competir</li>
+            <li><span class="dor-icon">✕</span>Atendimento manual para cada dúvida básica</li>
+          </ul>
         </div>
-
-        <div class="project-card">
-          <a href="https://l-essence-restaurant-landing-page.vercel.app/" class="project-card">
-            <div class="project-img-wrap">
-              <img class="project-img" src="assets/L'Essence.png" alt="L'Essence">
-              <div class="project-hover">
-                <span class="project-hover-text">Ver projeto</span>
-              </div>
-            </div>
-
-            <div class="project-info">
-              <p class="project-num">02</p>
-              <h3 class="project-name">L'Essence</h3>
-              <p class="project-vibe">Experiência gastronômica premium</p>
-            </div>
-          </a>
+        <div class="dor-col dor-col-com">
+          <span class="dor-col-label">Com sua landing page</span>
+          <ul class="dor-list">
+            <li><span class="dor-icon">✓</span>Aparece no Google quando o cliente precisa</li>
+            <li><span class="dor-icon">✓</span>Site captura contatos 24h, mesmo dormindo</li>
+            <li><span class="dor-icon">✓</span>Presença profissional que transmite confiança</li>
+            <li><span class="dor-icon">✓</span>Se destaca visualmente dos concorrentes</li>
+            <li><span class="dor-icon">✓</span>Justifica cobrar o valor que seu serviço merece</li>
+            <li><span class="dor-icon">✓</span>WhatsApp integrado — cliente chega pronto para comprar</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="project-card">
-          <a href="https://essenza-shop-landing-page.vercel.app/" class="project-card">
-            <div class="project-img-wrap">
-              <img class="project-img" src="assets/Essenza-shop.png" alt="Essenza Shop">
-              <div class="project-hover">
-                <span class="project-hover-text">Ver projeto</span>
-              </div>
-            </div>
+      <div class="dor-stat fade-up" style="transition-delay:0.15s">
+        <strong>"76% das pessoas que pesquisam um negócio local no celular visitam esse negócio em até 24 horas."</strong>
+        <p>Fonte: Google/Ipsos. Se você não aparece, quem aparece é seu concorrente.</p>
+      </div>
 
-            <div class="project-info">
-              <p class="project-num">03</p>
-              <h3 class="project-name">Essenza Shop</h3>
-              <p class="project-vibe">Branding editorial · Luxo silencioso</p>
-            </div>
-          </a>
-        </div>
-
+      <div class="dor-cta-wrap fade-up" style="transition-delay:0.2s">
+        <a href="https://wa.me/5538998510908?text=Olá%20Eduardo!%20Quero%20criar%20uma%20landing%20page%20para%20meu%20negócio." class="btn-primary">Quero aparecer antes do concorrente →</a>
       </div>
     </div>
   </section>
@@ -992,16 +913,14 @@
         <div class="fade-up">
           <p class="sobre-label">Sobre mim</p>
           <p class="sobre-text">Eu venho do desenvolvimento backend — sistemas, APIs, arquitetura.</p>
-          <p class="sobre-text">Mas hoje meu foco está em uma coisa simples: criar experiências digitais que ajudam
-            negócios a vender mais e parecerem mais profissionais online.</p>
-          <p class="sobre-sub">Não é só sobre código. É sobre posicionamento. É sobre o que o cliente sente quando entra
-            no seu site.</p>
+          <p class="sobre-text">Mas hoje meu foco está em uma coisa simples: criar experiências digitais que ajudam negócios a vender mais e parecerem mais profissionais online.</p>
+          <p class="sobre-sub">Não é só sobre código. É sobre posicionamento. É sobre o que o cliente sente quando entra no seu site.</p>
         </div>
         <div class="sobre-detail fade-up" style="transition-delay:0.1s">
           <div class="detail-item">
             <p class="detail-num">— Restaurantes & Bares</p>
             <p class="detail-title">Cardápios que convertem reservas</p>
-            <p class="detail-desc">Sites que passam a experiência antes mesmo do cliente entrar pelo door.</p>
+            <p class="detail-desc">Sites que passam a experiência antes mesmo do cliente entrar pela porta.</p>
           </div>
           <div class="detail-item">
             <p class="detail-num">— Lojas & Boutiques</p>
@@ -1029,172 +948,146 @@
       <div class="section-header fade-up" style="margin-bottom:80px">
         <div>
           <p class="section-tag" style="margin-bottom:12px">Portfólio completo</p>
-          <h2 class="section-title">Cada projeto, <em style="font-family:'Playfair Display',serif;font-style:italic">uma
-              estratégia.</em></h2>
+          <h2 class="section-title">Cada projeto, <em style="font-family:'Playfair Display',serif;font-style:italic">uma estratégia.</em></h2>
         </div>
       </div>
 
-      <!-- Purple Açaí -->
       <div class="project-full fade-up">
-
         <a href="https://landing-page-purple-acai.vercel.app/" target="_blank" class="project-image-link">
-
           <img class="project-img-full" src="assets/Purple-Açai.png" alt="Purple Açaí"
             onerror="this.style.background='#2d1b52';this.style.minHeight='400px'">
-
-          <div class="project-image-overlay">
-            <span>Ver projeto ↗</span>
-          </div>
-
+          <div class="project-image-overlay"><span>Ver projeto ↗</span></div>
         </a>
-
         <div class="project-content">
-
           <p class="project-context">Açaíteria · Conversão</p>
-
           <h3 class="project-big-name">Purple Açaí</h3>
-
           <p class="project-problem">O desafio</p>
-
-          <p class="project-desc">
-            Uma açaíteria premium sem presença digital. As vendas dependiam do boca a boca e do Instagram.
-            O negócio precisava de uma página que gerasse pedidos diretos pelo WhatsApp, transmitisse
-            qualidade e se destacasse da concorrência.
-          </p>
-
+          <p class="project-desc">Uma açaíteria premium sem presença digital. As vendas dependiam do boca a boca e do Instagram. O negócio precisava de uma página que gerasse pedidos diretos pelo WhatsApp, transmitisse qualidade e se destacasse da concorrência.</p>
           <div class="project-tags">
             <span class="tag">Conversão</span>
             <span class="tag">WhatsApp CTA</span>
             <span class="tag">UI vibrante</span>
             <span class="tag">Mobile-first</span>
           </div>
-
-          <a href="https://wa.me/5538998510908?text=Quero%20algo%20assim%20para%20meu%20negócio" class="project-cta">
-
-            Quero algo assim para meu negócio →
-
-          </a>
-
+          <a href="https://wa.me/5538998510908?text=Quero%20algo%20assim%20para%20meu%20negócio" class="project-cta">Quero algo assim para meu negócio →</a>
         </div>
-
       </div>
 
-      <!-- L'Essence -->
       <div class="project-full fade-up" style="transition-delay:0.05s">
-
         <a href="https://l-essence-restaurant-landing-page.vercel.app/" target="_blank" class="project-image-link">
-
           <img class="project-img-full" src="assets/L'Essence.png" alt="L'Essence"
             onerror="this.style.background='#1a1200';this.style.minHeight='400px'">
-
-          <div class="project-image-overlay">
-            <span>Ver projeto ↗</span>
-          </div>
-
+          <div class="project-image-overlay"><span>Ver projeto ↗</span></div>
         </a>
-
         <div class="project-content">
           <p class="project-context">Fine Dining · Experiência</p>
-
           <h3 class="project-big-name">L'Essence</h3>
-
           <p class="project-problem">O desafio</p>
-
-          <p class="project-desc">
-            Um restaurante de alta gastronomia com identidade visual fraca online.
-            A página precisava capturar a sofisticação do ambiente e transformar
-            visitantes em reservas — transmitindo experiência antes da primeira garfada.
-          </p>
-
+          <p class="project-desc">Um restaurante de alta gastronomia com identidade visual fraca online. A página precisava capturar a sofisticação do ambiente e transformar visitantes em reservas — transmitindo experiência antes da primeira garfada.</p>
           <div class="project-tags">
             <span class="tag">Premium UX</span>
             <span class="tag">Reservas online</span>
             <span class="tag">Identidade visual</span>
             <span class="tag">Tipografia editorial</span>
           </div>
-
-          <a href="https://wa.me/5538998510908?text=Quero%20algo%20assim%20para%20meu%20negócio" class="project-cta">
-
-            Quero algo assim para meu negócio →
-
-          </a>
+          <a href="https://wa.me/5538998510908?text=Quero%20algo%20assim%20para%20meu%20negócio" class="project-cta">Quero algo assim para meu negócio →</a>
         </div>
-
       </div>
 
-      <!-- Essenza Shop -->
       <div class="project-full fade-up" style="transition-delay:0.1s">
-
         <a href="https://essenza-shop-landing-page.vercel.app/" target="_blank" class="project-image-link">
-
           <img class="project-img-full" src="assets/Essenza-shop.png" alt="Essenza Shop"
             onerror="this.style.background='#1c1c1c';this.style.minHeight='400px'">
-
-          <div class="project-image-overlay">
-            <span>Ver projeto ↗</span>
-          </div>
-
+          <div class="project-image-overlay"><span>Ver projeto ↗</span></div>
         </a>
-
         <div class="project-content">
           <p class="project-context">Moda · Branding Editorial</p>
-
           <h3 class="project-big-name">Essenza Shop</h3>
-
           <p class="project-problem">O desafio</p>
-
-          <p class="project-desc">
-            Uma boutique de moda essencial que precisava de uma presença digital à
-            altura do seu produto. O briefing era claro: luxo silencioso, nada
-            excessivo — a mesma filosofia da marca aplicada ao digital.
-          </p>
-
+          <p class="project-desc">Uma boutique de moda essencial que precisava de uma presença digital à altura do seu produto. O briefing era claro: luxo silencioso, nada excessivo — a mesma filosofia da marca aplicada ao digital.</p>
           <div class="project-tags">
             <span class="tag">Editorial</span>
             <span class="tag">Quiet luxury</span>
             <span class="tag">Lookbook digital</span>
             <span class="tag">Branding</span>
           </div>
-
-          <a href="https://wa.me/5538998510908?text=Quero%20algo%20assim%20para%20meu%20negócio" class="project-cta">
-
-            Quero algo assim para meu negócio →
-
-          </a>
+          <a href="https://wa.me/5538998510908?text=Quero%20algo%20assim%20para%20meu%20negócio" class="project-cta">Quero algo assim para meu negócio →</a>
         </div>
-
       </div>
+    </div>
   </section>
 
-  <!-- SERVIÇOS -->
+  <!-- MID CTA -->
+  <div class="mid-cta-strip fade-up">
+    <p>
+      <strong>Gostou do que viu?</strong>
+      Cada projeto é único — criado do zero para o seu negócio, sem template.
+    </p>
+    <a href="https://wa.me/5538998510908?text=Olá%20Eduardo!%20Vi%20seus%20projetos%20e%20quero%20uma%20landing%20page%20para%20meu%20negócio." class="btn-primary">Vamos criar a sua →</a>
+  </div>
+
+  <!-- PRICING -->
   <section id="servicos">
     <div class="container">
       <div class="section-header fade-up">
         <div>
-          <p class="section-tag" style="margin-bottom:12px">O que ofereço</p>
+          <p class="section-tag" style="margin-bottom:12px">Investimento</p>
           <h2 class="section-title">Landing pages que<br>vendem por você.</h2>
         </div>
       </div>
-      <div class="servicos-grid fade-up" style="transition-delay:0.1s">
-        <div class="servico-card">
-          <div class="servico-icon"></div>
-          <h3 class="servico-name">Landing Page Local</h3>
-          <p class="servico-desc">Página focada em conversão para negócios locais. Design moderno, CTAs estratégicos e
-            integração direta com WhatsApp.</p>
+      <div class="pricing-grid fade-up" style="transition-delay:0.1s">
+
+        <div class="pricing-card">
+          <p class="pricing-name">Essencial</p>
+          <p class="pricing-from">A partir de</p>
+          <p class="pricing-price">R$399</p>
+          <ul class="pricing-list">
+            <li>1 página de alta conversão</li>
+            <li>Design 100% exclusivo</li>
+            <li>WhatsApp integrado</li>
+            <li>Mobile First</li>
+            <li>Deploy incluído</li>
+            <li>Entrega em até 7 dias</li>
+          </ul>
+          <a href="https://wa.me/5538998510908?text=Tenho%20interesse%20no%20plano%20Essencial" class="pricing-cta">Quero esse</a>
         </div>
-        <div class="servico-card">
-          <div class="servico-icon"></div>
-          <h3 class="servico-name">Site Institucional</h3>
-          <p class="servico-desc">Presença digital completa para clínicas, escritórios e empresas que precisam
-            transmitir credibilidade e profissionalismo.</p>
+
+        <div class="pricing-card featured">
+          <span class="pricing-badge">Mais escolhido</span>
+          <p class="pricing-name">Profissional</p>
+          <p class="pricing-from">A partir de</p>
+          <p class="pricing-price">R$700</p>
+          <ul class="pricing-list">
+            <li>Até 3 seções customizadas</li>
+            <li>Copywriting estratégico incluso</li>
+            <li>SEO básico configurado</li>
+            <li>Formulário ou agendamento online</li>
+            <li>WhatsApp + integrações</li>
+            <li>Deploy + 15 dias de suporte</li>
+          </ul>
+          <a href="https://wa.me/5538998510908?text=Tenho%20interesse%20no%20plano%20Profissional" class="pricing-cta">Quero esse</a>
         </div>
-        <div class="servico-card">
-          <div class="servico-icon"></div>
-          <h3 class="servico-name">Página de Conversão</h3>
-          <p class="servico-desc">Estrutura focada em capturar leads, agendar consultas ou direcionar pedidos. Objetivo
-            único, resultado máximo.</p>
+
+        <div class="pricing-card">
+          <p class="pricing-name">Premium</p>
+          <p class="pricing-from">A partir de</p>
+          <p class="pricing-price">R$1.497</p>
+          <ul class="pricing-list">
+            <li>Projeto completo e estratégico</li>
+            <li>Copywriting + identidade visual</li>
+            <li>Integrações avançadas</li>
+            <li>SEO completo</li>
+            <li>Deploy + domínio + 30 dias suporte</li>
+            <li>Pixel de rastreamento incluso</li>
+          </ul>
+          <a href="https://wa.me/5538998510908?text=Tenho%20interesse%20no%20plano%20Premium" class="pricing-cta">Quero esse</a>
         </div>
+
       </div>
+      <p class="pricing-note fade-up" style="transition-delay:0.15s">
+        Não tem certeza qual plano faz sentido?
+        <a href="https://wa.me/5538998510908?text=Quero%20entender%20qual%20plano%20faz%20mais%20sentido%20para%20meu%20negócio" style="color:var(--gray-light);text-decoration:underline">Me manda uma mensagem</a> — conversa de 10 minutos, sem compromisso.
+      </p>
     </div>
   </section>
 
@@ -1204,34 +1097,32 @@
       <div class="diferencial-grid">
         <div class="diferencial-left fade-up">
           <p class="section-tag" style="margin-bottom:20px">Por que me escolher</p>
-          <h2 class="diferencial-headline">Design que converte.<br>Engenharia que<br><em
-              style="font-family:'Playfair Display',serif;font-style:italic">funciona.</em></h2>
-          <p class="diferencial-sub" style="margin-top:20px">Minha base em backend me dá uma vantagem que a maioria dos
-            designers não tem: eu entendo a estrutura que sustenta o que você vê.</p>
+          <h2 class="diferencial-headline">Não sou só designer.<br>Tenho <em style="font-family:'Playfair Display',serif;font-style:italic">engenharia</em><br>por trás do que você vê.</h2>
+          <p class="diferencial-sub" style="margin-top:20px">A maioria dos freelas entrega um site bonito que trava no celular e depende de plataforma cara para funcionar. Minha formação em backend muda isso: cada página tem performance real e código que evolui com o seu negócio.</p>
+          <div class="diferencial-disclaimer">
+            Diferente de Wix ou Squarespace: código proprietário, sem mensalidade de plataforma.
+          </div>
         </div>
         <div class="features-list fade-up" style="transition-delay:0.1s">
           <div class="feature">
             <p class="feature-n">01</p>
-            <h4 class="feature-title">Performance otimizada</h4>
-            <p class="feature-desc">Sites rápidos que carregam em segundos — porque velocidade impacta diretamente na
-              conversão e no SEO.</p>
+            <h4 class="feature-title">Carrega em segundos</h4>
+            <p class="feature-desc">Cada segundo a menos de carregamento é um cliente a mais que não desiste. Sites lentos perdem venda — os meus não.</p>
           </div>
           <div class="feature">
             <p class="feature-n">02</p>
-            <h4 class="feature-title">Estrutura escalável</h4>
-            <p class="feature-desc">Código limpo e organizado que permite evoluções futuras sem reconstruir do zero.</p>
+            <h4 class="feature-title">Cresce com você</h4>
+            <p class="feature-desc">Quer adicionar cardápio, agendamento ou loja depois? Código limpo que evolui sem reconstruir do zero.</p>
           </div>
           <div class="feature">
             <p class="feature-n">03</p>
-            <h4 class="feature-title">Integração com APIs</h4>
-            <p class="feature-desc">WhatsApp, formulários, sistemas de reserva — conexões que automatizam o atendimento.
-            </p>
+            <h4 class="feature-title">WhatsApp, reservas e formulários</h4>
+            <p class="feature-desc">Seu site trabalha pelo seu negócio enquanto você atende — integrações que automatizam o primeiro contato.</p>
           </div>
           <div class="feature">
             <p class="feature-n">04</p>
-            <h4 class="feature-title">Experiência completa</h4>
-            <p class="feature-desc">Do briefing ao ar — design, desenvolvimento e entrega em um único fluxo sem fricção.
-            </p>
+            <h4 class="feature-title">Um responsável, zero confusão</h4>
+            <p class="feature-desc">Design, código e publicação no mesmo lugar. Sem terceirizar, sem intermediário, sem erro de comunicação.</p>
           </div>
         </div>
       </div>
@@ -1244,16 +1135,14 @@
       <div class="section-header fade-up">
         <div>
           <p class="section-tag" style="margin-bottom:12px">Como funciona</p>
-          <h2 class="section-title">Simples. Direto. <em
-              style="font-family:'Playfair Display',serif;font-style:italic">Entregue.</em></h2>
+          <h2 class="section-title">Simples. Direto. <em style="font-family:'Playfair Display',serif;font-style:italic">Entregue.</em></h2>
         </div>
       </div>
       <div class="process-steps fade-up" style="transition-delay:0.1s">
         <div class="step" style="padding-right:40px">
           <p class="step-num">01 — Início</p>
           <h4 class="step-title">Briefing rápido</h4>
-          <p class="step-desc">Conversa de 30 minutos para entender seu negócio, público e objetivo. Sem formulários
-            longos.</p>
+          <p class="step-desc">Conversa de 30 minutos para entender seu negócio, público e objetivo. Sem formulários longos.</p>
         </div>
         <div class="step" style="padding:0 40px">
           <p class="step-num">02 — Criação</p>
@@ -1268,8 +1157,7 @@
         <div class="step" style="padding-left:40px">
           <p class="step-num">04 — Entrega</p>
           <h4 class="step-title">Online & Otimizado</h4>
-          <p class="step-desc">Publicação, ajustes finais e acompanhamento. Seu negócio no ar, pronto para converter.
-          </p>
+          <p class="step-desc">Publicação, ajustes finais e acompanhamento. Seu negócio no ar, pronto para converter.</p>
         </div>
       </div>
     </div>
@@ -1280,9 +1168,12 @@
     <div class="container fade-up">
       <p class="cta-eyebrow">Pronto para começar?</p>
       <h2 class="cta-h2">Seu negócio pode parecer maior do que ele é hoje.</h2>
-      <p class="cta-sub">Vamos criar uma landing page que transforma visitantes em clientes.</p>
-      <a href="https://wa.me/5538998510908?text=Olá%20Eduardo!%20Quero%20criar%20uma%20landing%20page%20para%20meu%20negócio."
-        class="btn-whatsapp">Falar no WhatsApp</a>
+      <p class="cta-sub">Vamos criar uma landing page que transforma visitantes em clientes. É só uma conversa — sem compromisso.</p>
+      <a href="https://wa.me/5538998510908?text=Olá%20Eduardo!%20Quero%20criar%20uma%20landing%20page%20para%20meu%20negócio." class="btn-whatsapp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp agora
+      </a>
+      <p class="cta-guarantee">Respondo em menos de 1h · Sem formulário longo · Sem compromisso</p>
     </div>
   </section>
 
@@ -1291,7 +1182,7 @@
     <div class="footer-inner">
       <div>
         <p class="footer-name">Eduardo Souza</p>
-        <p class="footer-pos">Digital Experience Designer</p>
+        <p class="footer-pos">Landing Pages para Negócios Locais</p>
       </div>
       <div class="footer-links">
         <a href="#">Instagram</a>
@@ -1301,15 +1192,40 @@
     </div>
   </footer>
 
+  <!-- STICKY WA -->
+  <a href="https://wa.me/5538998510908?text=Olá%20Eduardo!%20Quero%20criar%20uma%20landing%20page%20para%20meu%20negócio." id="sticky-wa" target="_blank">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Orçamento grátis
+  </a>
+
   <script>
+    // Fade-up
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); }
-      });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Sticky WA after 15% scroll
+    const stickyWa = document.getElementById('sticky-wa');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      stickyWa.classList.toggle('show', scrolled > 0.15);
+    }, { passive: true });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('nav-drawer');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      drawer.classList.toggle('open');
+    });
+    document.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        drawer.classList.remove('open');
+      });
+    });
   </script>
 
 </body>
-
 </html>
